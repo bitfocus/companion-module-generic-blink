@@ -12,7 +12,10 @@ module.exports = {
 					label: 'Rate (ms)',
 					id: 'rate',
 					default: 1000,
-					tooltip: 'The rate in milliseconds at which the buttons will blink. 1000ms = 1 second.'
+					tooltip: 'The rate in milliseconds at which the buttons will blink. 1000ms = 1 second.',
+					required: true,
+					min: 100,
+					max: 10000
 				}
 			],
 			callback: async function (action) {
