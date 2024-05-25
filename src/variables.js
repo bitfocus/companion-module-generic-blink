@@ -3,7 +3,15 @@ module.exports = {
 		let self = this;
 		
 		let variables = []
-		variables.push({ variableId: 'rate', name: 'Blink Rate' })
+
+		if (self.config.specifyCustomOnOff) {
+			variables.push({ variableId: 'onTime', name: 'On Time' })
+			variables.push({ variableId: 'offTime', name: 'Off Time' })
+		}
+		else {
+			variables.push({ variableId: 'rate', name: 'Blink Rate' })
+		}
+
 		self.setVariableDefinitions(variables);
 	},
 
@@ -11,9 +19,16 @@ module.exports = {
 		let self = this;
 
 		try {
-
 			variableValues = {};
-			variableValues['rate'] = self.config.rate;
+
+			if (self.config.specifyCustomOnOff) {
+				variableValues['onTime'] = self.config.onTime;
+				variableValues['offTime'] = self.config.offTime;
+			}
+			else {
+				variableValues['rate'] = self.config.rate;
+			}
+			
 			self.setVariableValues(variableValues);
 		}
 		catch(error) {

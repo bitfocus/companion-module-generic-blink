@@ -81,6 +81,19 @@ module.exports = {
 			}
 		}
 
+		feedbacks.blink = {
+			type: 'boolean',
+			name: 'Blink the Button all the time',
+			description: 'Blinks the button all the time',
+			defaultStyle: {
+				color: foregroundColor,
+				bgcolor: backgroundColorRed,
+			},
+			callback: async function (feedback, bank) {
+				return self.boolValue;
+			}
+		}
+
         self.setFeedbackDefinitions(feedbacks);
     }
 }
