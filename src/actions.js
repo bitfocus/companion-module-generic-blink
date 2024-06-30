@@ -34,8 +34,6 @@ module.exports = {
 				callback: async function (action) {
                     let onTime = parseInt(await(self.parseVariablesInString(action.options.onTime)));
                     let offTime = parseInt(await(self.parseVariablesInString(action.options.offTime)));
-					console.log(`On time set to ${onTime}`);
-					console.log(`Off time set to ${offTime}`);
 					self.setOnOffTimes(onTime, offTime);
 				}
 			}
@@ -58,7 +56,6 @@ module.exports = {
 				],
 				callback: async function (action) {
                     let rate = parseInt(await(self.parseVariablesInString(action.options.rate)));
-					console.log(`rate set to : ${rate}`);
 					self.setRate(rate);
 				}
 			}
