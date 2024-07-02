@@ -9,29 +9,31 @@ module.exports = {
 				name: 'Set On/Off Times',
 				options: [
 					{
-						type: 'number',
+						type: 'textinput',
 						label: 'On Time (ms)',
 						id: 'onTime',
 						default: 1000,
 						tooltip: 'The time in milliseconds the button will be on.',
 						required: true,
+						useVariables: true,
 						min: 100,
 						max: 10000
 					},
 					{
-						type: 'number',
+						type: 'textinput',
 						label: 'Off Time (ms)',
 						id: 'offTime',
 						default: 500,
 						tooltip: 'The time in milliseconds the button will be off.',
 						required: true,
+						useVariables: true,
 						min: 100,
 						max: 10000
 					}
 				],
 				callback: async function (action) {
-					let onTime = parseInt(action.options.onTime);
-					let offTime = parseInt(action.options.offTime);
+                    let onTime = parseInt(await(self.parseVariablesInString(action.options.onTime)));
+                    let offTime = parseInt(await(self.parseVariablesInString(action.options.offTime)));
 					self.setOnOffTimes(onTime, offTime);
 				}
 			}
@@ -41,18 +43,19 @@ module.exports = {
 				name: 'Set Blink Rate',
 				options: [
 					{
-						type: 'number',
+						type: 'textinput',
 						label: 'Rate (ms)',
 						id: 'rate',
 						default: 1000,
 						tooltip: 'The rate in milliseconds at which the buttons will blink. 1000ms = 1 second.',
 						required: true,
+						useVariables: true,
 						min: 100,
 						max: 10000
 					}
 				],
 				callback: async function (action) {
-					let rate = parseInt(action.options.rate);
+                    let rate = parseInt(await(self.parseVariablesInString(action.options.rate)));
 					self.setRate(rate);
 				}
 			}
