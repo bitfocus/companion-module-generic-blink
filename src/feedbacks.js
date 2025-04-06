@@ -28,7 +28,7 @@ module.exports = {
 					label: 'Variable to Check',
 					tooltip: 'What variable to act on?',
 					id: 'variable',
-					useVariables: true
+					useVariables: { local: true },
 				},
 				{
 					type: 'dropdown',
@@ -48,13 +48,13 @@ module.exports = {
 					tooltip: 'What value to check against? This field can also be a variable.',
 					id: 'value',
 					default: '',
-					useVariables: true
+					useVariables: { local: true },
 				},
 			],
-			callback: async function (feedback, bank) {
+			callback: async function (feedback, context) {
 				let opt = feedback.options;
-				let value = await self.parseVariablesInString(opt.variable);
-				let value2 = await self.parseVariablesInString(opt.value);
+				let value = await context.parseVariablesInString(opt.variable);
+				let value2 = await context.parseVariablesInString(opt.value);
 				let op = opt.op;
 				let val = false;
 
